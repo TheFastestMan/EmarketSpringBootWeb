@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <style>
+        .role-user {
+            color: blue;
+        }
+
+        .role-admin {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to Admin Panel</h1>
+
+<h2>All Users:</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">User ID</td>
+        <td th:text="${user.username}">Username</td>
+        <td th:text="${user.email}">Email</td>
+        <td>
+                <span th:class="${user.role == 'ADMIN' ? 'role-admin' : 'role-user'}"
+                      th:text="${user.role}">Role</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
