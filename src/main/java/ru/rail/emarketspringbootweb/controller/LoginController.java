@@ -4,9 +4,14 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.rail.emarketspringbootweb.dto.LoginDTO;
 import ru.rail.emarketspringbootweb.dto.UserDto;
 import ru.rail.emarketspringbootweb.service.UserService;
 
@@ -23,26 +28,32 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(@RequestParam(required = false) String error, Model model) {
+    public String getLoginPage(@ModelAttribute("userDTO") LoginDTO error, Model model) {
         if (error != null) {
-            model.addAttribute("error", true);
+            model.addAttribute("error", error);
         }
         return "login";
     }
 
     @PostMapping("/login")
-    public String handleLogin(
-            @RequestParam String email,
-            @RequestParam String password,
-            HttpSession session,
-            Model model) throws Exception {
-        Optional<UserDto> userOptional = userService.login(email, password);
+    public String handleLogin(@ModelAttribute("userDTO") @Validated LoginDTO userDto,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes,
+                              HttpSession session) throws Exception {
+        if (bindingResult.hasErrors()) {
+            // Global errors can be added to the model or as flash attributes!!!!!!!!!!!!!
+            return "login"; // Return here if there are validation errors
+        }
+
+        Optional<UserDto> userOptional = userService.login(userDto.getEmail(), userDto.getPassword());
         if (userOptional.isPresent()) {
             session.setAttribute("user", userOptional.get());
             return "redirect:/user";
         } else {
-            model.addAttribute("error", true);
+            // Handle login failure (this block might not be necessary if the validator is working properly)
+            bindingResult.reject("login.invalid", "Email or password is not correct");
             return "login";
         }
     }
+
 }

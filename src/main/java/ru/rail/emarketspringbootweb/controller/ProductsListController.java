@@ -6,14 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.rail.emarketspringbootweb.dto.ProductDto;
 import ru.rail.emarketspringbootweb.service.ProductService;
-
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/products")
@@ -26,29 +21,28 @@ public class ProductsListController {
         this.productService = productService;
     }
 
-//    @GetMapping
-//    public String listProducts(Model model) {
-//        try {
-//            List<ProductDto> products = productService.getAllProducts();
-//            model.addAttribute("pr", products);
-//            return "products";
-//        } catch (Exception e) {
-//
-//            e.printStackTrace();
-//
-//            model.addAttribute("errorMessage", "Error processing the request");
-//            return "error";
-//        }
+    @GetMapping()
+    public String showAllProducts(@ModelAttribute("productDTO") ProductDto productDto,
+                                       Model model,
+                                       @RequestParam(defaultValue = "0") int page,
+                                       @RequestParam(defaultValue = "3") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<ProductDto> productsPage = productService.getAllProducts(pageable);
+        model.addAttribute("productsPage", productsPage);
+        return "products";
+    }
 
-        @GetMapping
-        public String listProducts(Model model,
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "3") int size) {
-            Pageable pageable = PageRequest.of(page, size);
-            Page<ProductDto> productsPage = productService.getAllProducts(pageable);
-            model.addAttribute("productsPage", productsPage);
-            return "products";
-        }
+
+    @GetMapping("/filter")
+    public String showFilteredProducts(@ModelAttribute("productDTO") ProductDto productDto,
+                                       Model model,
+                                       @RequestParam(defaultValue = "0") int page,
+                                       @RequestParam(defaultValue = "3") int size) {
+        Page<ProductDto> productsPage = productService.getAllProducts(productDto, page, size);
+        model.addAttribute("productsPage", productsPage);
+        return "filterProducts";
+    }
+
 
 }
 

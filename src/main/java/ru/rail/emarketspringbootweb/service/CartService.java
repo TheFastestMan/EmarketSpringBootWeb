@@ -1,6 +1,4 @@
 package ru.rail.emarketspringbootweb.service;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +17,6 @@ import ru.rail.emarketspringbootweb.repository.UserRepository;
 @Service
 public class CartService {
     @Autowired
-    private final ModelMapper modelMapper;
-    @Autowired
     private final CartRepository cartRepository;
 
     @Autowired
@@ -32,29 +28,15 @@ public class CartService {
     @Autowired
     private final ProductRepository productRepository;
 
-    public CartService(ModelMapper modelMapper, CartRepository cartRepository, UserRepository userRepository, CartItemRepository cartItemRepository, ProductRepository productRepository) {
-        this.modelMapper = modelMapper;
+    public CartService(CartRepository cartRepository, UserRepository userRepository, CartItemRepository cartItemRepository, ProductRepository productRepository) {
+
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.cartItemRepository = cartItemRepository;
         this.productRepository = productRepository;
     }
 
-    private Product convertProductDtoToProduct(ProductDto productDto) {
-        Product product = modelMapper.map(productDto, Product.class);
-        product.setId(productDto.getId());
-        product.setProductName(productDto.getProductName());
-        product.setDescription(productDto.getDescription());
-        product.setPrice(productDto.getPrice());
-        return product;
-    }
 
-    private User convertUserDtoToUser(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
-        user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
-        return user;
-    }
 
 
     @Transactional

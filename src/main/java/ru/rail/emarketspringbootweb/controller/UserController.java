@@ -10,8 +10,7 @@ import ru.rail.emarketspringbootweb.dto.UserDto;
 public class UserController {
 
     @GetMapping("/user")
-    public String getUserPage(
-            @SessionAttribute(name = "user", required = false) UserDto user, // Gets the 'user' attribute from the session
+    public String getUserPage(@SessionAttribute(name = "user", required = false) UserDto user,
             Model model) {
 
         if (user == null) {

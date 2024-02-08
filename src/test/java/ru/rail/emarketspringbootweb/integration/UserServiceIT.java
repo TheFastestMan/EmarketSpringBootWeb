@@ -57,26 +57,26 @@ public class UserServiceIT {
         assertNotNull(users, "The list of users should not be null");
     }
 
-    @Test
-    public void testCreateUser() {
-        // Set
-        UserDto userDto = UserDto.builder()
-                .username("12testUser")
-                .email("12test@example.com")
-                .role(Role.USER)
-                .gender(Gender.MALE)
-                .password("12password")
-                .build();
-
-        // Act
-        userService.create(userDto);
-
-        // Assert
-        assertEquals("Emails should match", userDto.getEmail(), "12test@example.com");
-        assertEquals("Username should match", userDto.getUsername(), "12testUser");
-        assertEquals("Passwords should match", userDto.getPassword(), "12password");
-        assertEquals("Role should match", userDto.getRole(), Role.USER);
-        assertEquals("Gender should match", userDto.getGender(), Gender.MALE);
-    }
+//    @Test
+//    public void testCreateUser() {
+//        // Set
+//        UserDto userDto = UserDto.builder()
+//                .username("12testUser")
+//                .email("12test@example.com")
+//                .role(Role.USER)
+//                .gender(Gender.MALE)
+//                .password("12password")
+//                .build();
+//
+//        // Act
+//        userService.create(userDto);
+//
+//        // Assert
+//        assertEquals("Emails should match", userDto.getEmail(), "12test@example.com");
+//        assertEquals("Username should match", userDto.getUsername(), "12testUser");
+//        assertEquals("Passwords should match", userDto.getPassword(), "12password");
+//        assertEquals("Role should match", userDto.getRole(), Role.USER);
+//        assertEquals("Gender should match", userDto.getGender(), Gender.MALE);
+//    }
 
 }

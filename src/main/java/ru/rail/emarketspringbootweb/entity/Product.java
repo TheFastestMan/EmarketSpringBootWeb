@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
 @Entity
 @Table(name = "products")
 public class Product implements BaseEntity<Long> {

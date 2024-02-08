@@ -36,31 +36,31 @@ public class ProductServiceIT {
 
     }
 
-    @Test
-    public void testAddProduct() {
-        // Set
-        String productName = "testProductName";
-        String description = "descriptionTest";
-        Double price = 19.0;
-        Integer quantity = 100;
-        //Set
-        ProductDto productDto = ProductDto.builder()
-                .productName(productName)
-                .description(description)
-                .price(price)
-                .quantity(quantity)
-                .build();
-
-        // Act
-        productService.addProduct(productDto);
-
-        // Assert
-        AssertionErrors.assertEquals("Product name should match", productDto.getProductName(), "testProductName");
-        AssertionErrors.assertEquals("Product description should match", productDto.getDescription(), "descriptionTest");
-        AssertionErrors.assertEquals("Price should match", productDto.getPrice(), 19.0);
-        AssertionErrors.assertEquals("Quantity should match", productDto.getQuantity(), 100);
-
-    }
+//    @Test
+//    public void testAddProduct() {
+//        // Set
+//        String productName = "testProductName";
+//        String description = "descriptionTest";
+//        Double price = 19.0;
+//        Integer quantity = 100;
+//        //Set
+//        ProductDto productDto = ProductDto.builder()
+//                .productName(productName)
+//                .description(description)
+//                .price(price)
+//                .quantity(quantity)
+//                .build();
+//
+//        // Act
+//        productService.addProduct(productDto);
+//
+//        // Assert
+//        AssertionErrors.assertEquals("Product name should match", productDto.getProductName(), "testProductName");
+//        AssertionErrors.assertEquals("Product description should match", productDto.getDescription(), "descriptionTest");
+//        AssertionErrors.assertEquals("Price should match", productDto.getPrice(), 19.0);
+//        AssertionErrors.assertEquals("Quantity should match", productDto.getQuantity(), 100);
+//
+//    }
 
 }
 

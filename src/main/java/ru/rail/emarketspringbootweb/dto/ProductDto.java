@@ -1,13 +1,14 @@
 package ru.rail.emarketspringbootweb.dto;
 
 
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import ru.rail.emarketspringbootweb.validation.ValidPrice;
 
 
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor

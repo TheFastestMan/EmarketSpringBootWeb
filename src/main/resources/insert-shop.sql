@@ -1,16 +1,16 @@
 INSERT INTO products (product_name, description, quantity, price)
-VALUES ('Goods 1', 'description 1', 100, 100.5);
+VALUES ('Goods 2', 'description 1', 100, 100.5);
 INSERT INTO products (product_name, description, quantity, price)
-VALUES ('Goods 2', 'description 2', 100, 200.5);
+VALUES ('Goods 3', 'description 1', 100, 200.5);
 INSERT INTO products (product_name, description, quantity, price)
-VALUES ('Goods 3', 'description 3', 100, 300.5);
+VALUES ('Goods 1', 'description 1', 100, 300.5);
 INSERT INTO products (product_name, description, quantity, price)
-VALUES ('Goods 4', 'description 4', 100, 400.5);
+VALUES ('Goods 4', 'description 1', 100, 400.5);
 
 INSERT INTO products (product_name, description, quantity, price)
-VALUES ('Goods 11', 'description 11', 100, 100.5);
+VALUES ('Goods 5', 'description 1', 100, 100.5);
 INSERT INTO products (product_name, description, quantity, price)
-VALUES ('Goods 21', 'description 21', 100, 200.5);
+VALUES ('Goods 7', 'description 1', 100, 200.5);
 INSERT INTO products (product_name, description, quantity, price)
 VALUES ('Goods 31', 'description 31', 100, 300.5);
 INSERT INTO products (product_name, description, quantity, price)
@@ -33,6 +33,56 @@ INSERT INTO products (product_name, description, quantity, price)
 VALUES ('Goods 33', 'description 33', 100, 300.5);
 INSERT INTO products (product_name, description, quantity, price)
 VALUES ('Goods 43', 'description 43', 100, 400.5);
+
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 1', 100, 100.5);
+
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 8', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 71', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 16', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 51', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 14', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 31', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 14', 100, 100.5);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100.5);
+
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100);
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 100);
+
+INSERT INTO products (product_name, description, quantity, price)
+VALUES ('Goods 2', 'description 15', 100, 1000);
 -- INSERT INTO products (product_name, description, price)
 -- VALUES ('Goods 4', 'description 4', 400.5);
 

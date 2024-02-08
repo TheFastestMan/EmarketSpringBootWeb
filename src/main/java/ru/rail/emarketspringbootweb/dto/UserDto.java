@@ -11,7 +11,6 @@ import lombok.ToString;
 import ru.rail.emarketspringbootweb.entity.Gender;
 import ru.rail.emarketspringbootweb.entity.Role;
 
-@Builder
 @Getter
 @Setter
 @ToString

@@ -1,14 +1,11 @@
 package ru.rail.emarketspringbootweb.service;
 
-import lombok.extern.log4j.Log4j;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rail.emarketspringbootweb.dto.UserDto;
 import ru.rail.emarketspringbootweb.entity.User;
+import ru.rail.emarketspringbootweb.mapper.UserMapper;
 import ru.rail.emarketspringbootweb.repository.UserRepository;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -19,49 +16,46 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     private final UserRepository userRepository;
+    @Autowired
+    private final UserMapper userMapper;
 
-    private final ModelMapper modelMapper;
-
-    public UserService(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
-    }
 
-    private User convertUserDtoToUser(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
-        user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
-        return user;
+        this.userMapper = userMapper;
     }
 
 
     public Optional<UserDto> login(String email, String password) throws Exception {
 
         return userRepository.findByEmailAndPassword(email, password)
-                .map(user -> UserDto.builder()
-                        .id(user.getId())
-                        .username(user.getUsername())
-                        .email(user.getEmail())
-                        .role(user.getRole())
-                        .gender(user.getGender())
-                        .password(user.getPassword())
-                        .build());
-
+                .map(user -> {
+                    UserDto dto = new UserDto();
+                    dto.setId(user.getId());
+                    dto.setUsername(user.getUsername());
+                    dto.setEmail(user.getEmail());
+                    dto.setRole(user.getRole());
+                    dto.setGender(user.getGender());
+                    dto.setPassword(user.getPassword());
+                    return dto;
+                });
     }
 
 
     public List<UserDto> findAllUser() throws Exception {
 
         return userRepository.findAll().stream()
-                .map(user -> UserDto.builder()
-                        .id(user.getId())
-                        .username(user.getUsername())
-                        .email(user.getEmail())
-                        .role(user.getRole())
-                        .gender(user.getGender())
-                        .password(user.getPassword())
-                        .build())
-                .collect(Collectors.toList());
+                .map(user -> {
+                            UserDto dto = new UserDto();
+                            dto.setId(user.getId());
+                            dto.setUsername(user.getUsername());
+                            dto.setEmail(user.getEmail());
+                            dto.setRole(user.getRole());
+                            dto.setGender(user.getGender());
+                            dto.setPassword(user.getPassword());
+                            return dto;
+                        }
+                ).collect(Collectors.toList());
     }
 
     public User create(UserDto userDto) {
@@ -73,12 +67,9 @@ public class UserService {
 //        if (!validationResult.isEmpty()) {
 //            throw new ConstraintViolationException(validationResult);
 //        }
+        User user = userMapper.toEntity(userDto);
 
-        var mappedUser = convertUserDtoToUser(userDto);
-
-        System.out.println("Mapped user email: " + mappedUser.getEmail());
-
-        var result = userRepository.save(mappedUser);
+        var result = userRepository.save(user);
         return result;
     }
 

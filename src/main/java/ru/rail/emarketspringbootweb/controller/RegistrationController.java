@@ -3,10 +3,7 @@ package ru.rail.emarketspringbootweb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.rail.emarketspringbootweb.dto.UserDto;
 import ru.rail.emarketspringbootweb.entity.Gender;
 import ru.rail.emarketspringbootweb.entity.Role;
@@ -33,20 +30,8 @@ public class RegistrationController {
 
     @PostMapping
     public String handleRegistration(
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String email,
-            @RequestParam Role role,
-            @RequestParam Gender gender,
+            @ModelAttribute("userDTO") UserDto userDto,
             Model model) {
-        UserDto userDto = UserDto.builder()
-                .username(username)
-                .email(email)
-                .password(password)
-                .role(role)
-                .gender(gender)
-                .build();
-
         try {
             userService.create(userDto);
             return "login";

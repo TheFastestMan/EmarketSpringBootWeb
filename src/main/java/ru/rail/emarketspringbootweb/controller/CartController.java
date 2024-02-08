@@ -28,7 +28,7 @@ public class CartController {
     @PostMapping("/add")
     public String addToCart(@RequestParam Long productId,
                             @RequestParam int quantity,
-                            @SessionAttribute("user") UserDto userDto, // This will get the user from session attributes
+                            @SessionAttribute("user") UserDto userDto, // This will get the user from session attributes!!!!!!!!
                             RedirectAttributes redirectAttributes) {
         System.out.println("addToCart method called with productId: " + productId + ", userId: " + userDto.getId() + ", quantity: " + quantity);
 
