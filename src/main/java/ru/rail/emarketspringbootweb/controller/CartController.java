@@ -1,6 +1,8 @@
 package ru.rail.emarketspringbootweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -11,11 +13,11 @@ import ru.rail.emarketspringbootweb.service.ProductService;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/cart")
 @SessionAttributes("user")
 public class CartController {
-//мууууу
+
     private final ProductService productService;
     private final CartService cartService;
 
@@ -26,29 +28,21 @@ public class CartController {
     }
 
 
-
     @PostMapping("/add")
-    public String addToCart(@RequestParam Long productId,
-                            @RequestParam int quantity,
-                            @SessionAttribute("user") UserDto userDto, // This will get the user from session attributes!!!!!!!!
-                            RedirectAttributes redirectAttributes) {
-        System.out.println("addToCart method called with productId: " + productId + ", userId: " + userDto.getId() + ", quantity: " + quantity);
-
+    public ResponseEntity<?> addToCart(@RequestParam Long productId,
+                                       @RequestParam int quantity,
+                                       @SessionAttribute("user") UserDto userDto) {
         try {
             Optional<ProductDto> productDtoOptional = productService.getProductById(productId);
-
             if (productDtoOptional.isPresent() && productDtoOptional.get().getQuantity() >= quantity) {
                 ProductDto productDto = productDtoOptional.get();
-
                 cartService.addProductToCart(userDto, productDto, quantity);
-
-                redirectAttributes.addFlashAttribute("addToCartSuccess", true);
+                return ResponseEntity.ok().body("Product added to cart successfully");
             } else {
-                redirectAttributes.addFlashAttribute("addToCartError", true);
+                return ResponseEntity.badRequest().body("Product cannot be added to cart");
             }
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("addToCartError", true);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding product to cart");
         }
-        return "redirect:/products";
     }
 }
