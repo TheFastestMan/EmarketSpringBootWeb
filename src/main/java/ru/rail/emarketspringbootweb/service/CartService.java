@@ -28,15 +28,13 @@ public class CartService {
     @Autowired
     private final ProductRepository productRepository;
 
-    public CartService(CartRepository cartRepository, UserRepository userRepository, CartItemRepository cartItemRepository, ProductRepository productRepository) {
-
+    public CartService(CartRepository cartRepository, UserRepository userRepository, CartItemRepository cartItemRepository,
+                       ProductRepository productRepository) {
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.cartItemRepository = cartItemRepository;
         this.productRepository = productRepository;
     }
-
-
 
 
     @Transactional

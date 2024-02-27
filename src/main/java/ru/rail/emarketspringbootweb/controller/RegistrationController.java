@@ -3,6 +3,8 @@ package ru.rail.emarketspringbootweb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.rail.emarketspringbootweb.dto.UserDto;
 import ru.rail.emarketspringbootweb.entity.Gender;
@@ -25,19 +27,23 @@ public class RegistrationController {
     public String getRegistration(Model model) {
         model.addAttribute("roles", Role.values());
         model.addAttribute("genders", Gender.values());
+        model.addAttribute("userDTO", new UserDto());
         return "registration";
     }
 
     @PostMapping
     public String handleRegistration(
-            @ModelAttribute("userDTO") UserDto userDto,
+            @ModelAttribute("userDTO") @Validated UserDto userDto,
+            BindingResult bindingResult,
             Model model) {
-        try {
-            userService.create(userDto);
-            return "login";
-        } catch (Exception e) {
-            model.addAttribute("error", "There was a problem creating your account. Please try again.");
-            return getRegistration(model);
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("roles", Role.values());
+            model.addAttribute("genders", Gender.values());
+            return "registration";
         }
+        userService.create(userDto);
+        return "login";
     }
+
 }

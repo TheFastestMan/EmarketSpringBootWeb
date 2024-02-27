@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/cart")
 @SessionAttributes("user")
 public class CartController {
-
+//мууууу
     private final ProductService productService;
     private final CartService cartService;
 
@@ -24,6 +24,8 @@ public class CartController {
         this.productService = productService;
         this.cartService = cartService;
     }
+
+
 
     @PostMapping("/add")
     public String addToCart(@RequestParam Long productId,

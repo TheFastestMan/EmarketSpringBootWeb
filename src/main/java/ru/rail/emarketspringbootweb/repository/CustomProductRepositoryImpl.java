@@ -9,8 +9,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import ru.rail.emarketspringbootweb.dto.ProductDto;
 import ru.rail.emarketspringbootweb.entity.Product;
+import ru.rail.emarketspringbootweb.entity.QCart;
+import ru.rail.emarketspringbootweb.entity.QCartItem;
 import ru.rail.emarketspringbootweb.entity.QProduct;
-
 
 import java.util.List;
 
@@ -42,7 +43,6 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
         return new PageImpl<>(products, pageable, total);
     }
 
-
     private BooleanExpression buildWhereClause(ProductDto productDto, QProduct qProduct) {
         BooleanExpression predicate = null;
 
@@ -64,5 +64,21 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
         return predicate;
     }
 
+    @Override
+    public List<Product> findProductByUserId(Long userId) {
+        QProduct qProduct = QProduct.product;
+        QCartItem qCartItem = QCartItem.cartItem;
+        QCart qCart = QCart.cart;
+        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+
+        return queryFactory
+                .select(qProduct)
+                .from(qProduct)
+                .join(qProduct.cartItems, qCartItem)
+                .join(qCartItem.cart, qCart)
+                .where(qCart.user.id.eq(userId))
+                .distinct()
+                .fetch();
+    }
 
 }

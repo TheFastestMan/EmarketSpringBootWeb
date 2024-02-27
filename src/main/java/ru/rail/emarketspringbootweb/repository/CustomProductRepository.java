@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface CustomProductRepository {
     Page<Product> findByProductDto(ProductDto productDto, Pageable pageable);
+    List<Product> findProductByUserId(Long id);
 }

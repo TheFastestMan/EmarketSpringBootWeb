@@ -17,6 +17,8 @@ public class EmarketSpringBootWebApplication {
     public static void main(String[] args) throws Exception {
         var c = SpringApplication.run(EmarketSpringBootWebApplication.class, args);
 
+       var t =  c.getBean(ProductService.class);
+      //  System.out.println("The total price is " + t.calculateTotalCartValue(8L));
     }
 
 }
