@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.rail.emarketspringbootweb.dto.ProductDto;
+import ru.rail.emarketspringbootweb.http.controller.ProductsListController;
 import ru.rail.emarketspringbootweb.service.ProductService;
 
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package ru.rail.emarketspringbootweb.controller;
+package ru.rail.emarketspringbootweb.http.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,18 +31,9 @@ public class ProductController {
         return "addProducts";
     }
 
-    @GetMapping("/allProducts")
-    public String showAllProducts(Model model,
-                                  @RequestParam(defaultValue = "0") int page,
-                                  @RequestParam(defaultValue = "3") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<ProductDto> productsPage = productService.getAllProducts(pageable);
-        model.addAttribute("productsPage", productsPage);
-        return "allProducts";
-    }
 
 
-    @PostMapping("/addProducts")
+    @PostMapping("/addProducts") // Решить как перевести на REST
     public String addProduct(@ModelAttribute("productDTO") @Validated ProductDto productDto,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes,

@@ -1,4 +1,4 @@
-package ru.rail.emarketspringbootweb.controller;
+package ru.rail.emarketspringbootweb.http.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

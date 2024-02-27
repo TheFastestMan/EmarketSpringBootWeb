@@ -9,4 +9,4 @@ spring:
         ddl-auto: update  # create, update, validate, or none
         show_sql: true
         format_sql: true
-
+bucket: /Users/rail/IdeaProjects/SkillSpace_Enterprise/7SpringBootAndData/EmarketSpringBootWeb/src/main/resources/static

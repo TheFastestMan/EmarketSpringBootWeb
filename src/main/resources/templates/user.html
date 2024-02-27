@@ -12,6 +12,8 @@
     <div class="user-info">
         <h2>User:</h2>
         <ul>
+            <img width="100" th:src="@{/api/image/{id}(id=${user.id})}" alt="User Image"/>
+
             <li>ID: <span th:text="${user.id}">User ID</span></li>
             <li>Username: <span th:text="${user.username}">Username</span></li>
             <li>Email: <span th:text="${user.email}">Email</span></li>

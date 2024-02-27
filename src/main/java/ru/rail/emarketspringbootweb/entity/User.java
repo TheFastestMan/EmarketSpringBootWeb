@@ -20,6 +20,7 @@ public class User implements BaseEntity<Long> {
     private String username;
     private String password;
     private String email;
+    private String image;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Enumerated(EnumType.STRING)

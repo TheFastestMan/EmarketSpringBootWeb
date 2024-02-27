@@ -5,9 +5,12 @@ CREATE TABLE users
     password VARCHAR(100)        NOT NULL,
     email    VARCHAR(100) UNIQUE NOT NULL,
     role     VARCHAR(10)         NOT NULL,
-    gender   VARCHAR(10)         NOT NULL
+    gender   VARCHAR(10)         NOT NULL,
+    image    VARCHAR(255)
     -- Other user-related fields
 );
+
+
 CREATE TABLE carts
 (
     cart_id    BIGSERIAL PRIMARY KEY,

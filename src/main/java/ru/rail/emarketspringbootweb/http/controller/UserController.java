@@ -1,4 +1,4 @@
-package ru.rail.emarketspringbootweb.controller;
+package ru.rail.emarketspringbootweb.http.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

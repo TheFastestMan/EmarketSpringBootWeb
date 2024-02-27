@@ -1,4 +1,4 @@
-package ru.rail.emarketspringbootweb.controller;
+package ru.rail.emarketspringbootweb.http.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

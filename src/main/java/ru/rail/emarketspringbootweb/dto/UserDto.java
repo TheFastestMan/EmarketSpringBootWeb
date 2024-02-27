@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 import ru.rail.emarketspringbootweb.entity.Gender;
 import ru.rail.emarketspringbootweb.entity.Role;
 
@@ -34,5 +35,7 @@ public class UserDto {
     @Size(min = 5, message = "Password should be not less than 5 characters")
     @NotEmpty(message = "Password should not be empty")
     private String password;
+
+    private  MultipartFile image;
 
 }
